@@ -1,4 +1,4 @@
-package com.oriol.app.data;
+package com.oriol.app.data.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
