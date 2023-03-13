@@ -29,6 +29,9 @@ public class UserEntity extends BaseEntity {
     @Builder
     public UserEntity(String id, LocalDateTime updatedAt, LocalDateTime createdAt, boolean deleted, String name) {
         super(id, updatedAt, createdAt, deleted);
+        this.name = name;
     }
+
+    private String name;
 
 }
