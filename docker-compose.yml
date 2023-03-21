@@ -4,8 +4,8 @@ services:
     container_name: postgres
     image: postgres
     environment:
-      POSTGRES_USER: oriol
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: "${USER}"
+      POSTGRES_PASSWORD: "${PASSWORD}"
       PGDATA: /data/postgres
     volumes:
       - postgres:/data/postgres
@@ -19,8 +19,8 @@ services:
     container_name: pgadmin
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
-      PGADMIN_DEFAULT_PASSWORD: "password"
+      PGADMIN_DEFAULT_EMAIL: "${EMAIL}"
+      PGADMIN_DEFAULT_PASSWORD: "${PASSWORD}"
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:
       - pgadmin:/var/lib/pgadmin
