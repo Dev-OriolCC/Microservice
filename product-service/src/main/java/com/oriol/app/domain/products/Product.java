@@ -1,22 +1,16 @@
-package com.oriol.app.web.dto;
+package com.oriol.app.domain.products;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.Id;
+import lombok.*;
 import java.time.LocalDateTime;
-
-
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaseDto {
-    @Id
+public class Product {
     private String id;
     private LocalDateTime updatedAt;
     private LocalDateTime createdAt;
     private boolean deleted = false;
+    private String name;
 }

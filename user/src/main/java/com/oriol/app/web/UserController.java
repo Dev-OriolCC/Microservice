@@ -18,7 +18,6 @@ public class UserController {
     private final UserService userService;
     @PostMapping
     public ResponseEntity<UserDto> create(@RequestBody final UserDto userDto) {
-        System.out.println("YES");
         return new ResponseEntity<>(toDto(userService.create(toModel(userDto))), HttpStatus.CREATED);
     }
 
@@ -28,8 +27,8 @@ public class UserController {
         return new ResponseEntity<>(userDtos, HttpStatus.OK);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> delete(String id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
         userService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
