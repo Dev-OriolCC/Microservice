@@ -12,5 +12,12 @@ public class Product {
     private LocalDateTime updatedAt;
     private LocalDateTime createdAt;
     private boolean deleted = false;
+    // ->
     private String name;
+    private String barcode;
+    private Double sugar;
+    private Double calories;
+    private Double saturatedFats;
+    private Double transFats;
+    private Double sodium;
 }

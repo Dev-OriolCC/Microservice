@@ -12,7 +12,7 @@
   <name>oriol-ms</name>
   <url>https://www.oriol.com</url>
   <modules>
-    <module>user</module>
+    <module>user-service</module>
     <module>product-service</module>
     <module>eureka-server</module>
   </modules>

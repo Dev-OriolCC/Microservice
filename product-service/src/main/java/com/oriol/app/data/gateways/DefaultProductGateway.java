@@ -6,17 +6,21 @@ import com.oriol.app.domain.products.Product;
 import com.oriol.app.domain.products.ProductGateway;
 import org.springframework.stereotype.Component;
 import java.util.List;
+import java.util.UUID;
+
 @Component
-public class DefaultUserGateway implements ProductGateway {
+public class DefaultProductGateway implements ProductGateway {
 
     private final ProductRepository productRepository;
 
-    public DefaultUserGateway(ProductRepository productRepository) {
+    public DefaultProductGateway(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
     @Override
     public Product create(Product product) {
+        product.setId(UUID.randomUUID().toString());
+        // Call and get stickers for this.
         return toModel(productRepository.save(toEntity(product)));
     }
 
@@ -38,6 +42,7 @@ public class DefaultUserGateway implements ProductGateway {
                 .createdAt(product.getCreatedAt())
                 .updatedAt(product.getUpdatedAt())
                 .deleted(product.isDeleted())
+                .barcode(product.getBarcode())
                 .build();
     }
 
@@ -48,6 +53,7 @@ public class DefaultUserGateway implements ProductGateway {
                 .createdAt(productEntity.getCreatedAt())
                 .updatedAt(productEntity.getUpdatedAt())
                 .deleted(productEntity.isDeleted())
+                .barcode(productEntity.getBarcode())
                 .build();
     }
 

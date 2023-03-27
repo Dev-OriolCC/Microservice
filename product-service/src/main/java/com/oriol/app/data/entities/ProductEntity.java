@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Table(name = "products")
-@SQLDelete(sql = "UPDATE users SET deleted =true WHERE id = ?")
+@SQLDelete(sql = "UPDATE products SET deleted =true WHERE id = ?")
 @Where(clause = "deleted = false")
 public class ProductEntity extends BaseEntity {
     /*
@@ -26,9 +26,22 @@ public class ProductEntity extends BaseEntity {
      * @Boolean deleted
      */
     @Builder
-    public ProductEntity(String id, LocalDateTime updatedAt, LocalDateTime createdAt, boolean deleted, String name) {
+    public ProductEntity(String id, LocalDateTime updatedAt, LocalDateTime createdAt, boolean deleted, String name, String barcode,
+                         Double sugar, Double calories, Double saturatedFats, Double transFats, Double sodium) {
         super(id, updatedAt, createdAt, deleted);
         this.name = name;
+        this.barcode = barcode;
+        this.sugar = sugar;
+        this.calories = calories;
+        this.saturatedFats = saturatedFats;
+        this.transFats = transFats;
+        this.sodium = sodium;
     }
     private String name;
+    private String barcode;
+    private Double sugar;
+    private Double calories;
+    private Double saturatedFats;
+    private Double transFats;
+    private Double sodium;
 }

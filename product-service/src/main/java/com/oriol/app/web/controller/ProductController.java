@@ -1,7 +1,6 @@
 package com.oriol.app.web.controller;
 
 import com.oriol.app.domain.products.Product;
-import com.oriol.app.domain.products.ProductGateway;
 import com.oriol.app.domain.products.ProductService;
 import com.oriol.app.web.controller.dto.ProductDto;
 import lombok.AllArgsConstructor;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping("/api/v1/products/")
+@RequestMapping("/api/v1/products")
 @AllArgsConstructor
 public class ProductController {
 
@@ -27,8 +26,8 @@ public class ProductController {
         List<ProductDto> productDtos = productService.getProducts().stream().map(this::toDto).toList();
         return new ResponseEntity<>(productDtos, HttpStatus.OK);
     }
-    @DeleteMapping
-    public ResponseEntity<Void> delete(String id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
         productService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -40,6 +39,12 @@ public class ProductController {
                 .createdAt(product.getCreatedAt())
                 .updatedAt(product.getUpdatedAt())
                 .deleted(product.isDeleted())
+                .barcode(product.getBarcode())
+                .sugar(product.getSugar())
+                .calories(product.getCalories())
+                .saturatedFats(product.getSaturatedFats())
+                .transFats(product.getTransFats())
+                .sodium(product.getSodium())
                 .build();
     }
 
@@ -50,6 +55,12 @@ public class ProductController {
                 .createdAt(productDto.getCreatedAt())
                 .updatedAt(productDto.getUpdatedAt())
                 .deleted(productDto.isDeleted())
+                .barcode(productDto.getBarcode())
+                .sugar(productDto.getSugar())
+                .calories(productDto.getCalories())
+                .saturatedFats(productDto.getSaturatedFats())
+                .transFats(productDto.getTransFats())
+                .sodium(productDto.getSodium())
                 .build();
     }
 
