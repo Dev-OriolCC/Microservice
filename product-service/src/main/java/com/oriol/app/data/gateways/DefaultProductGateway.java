@@ -12,7 +12,6 @@ import java.util.UUID;
 public class DefaultProductGateway implements ProductGateway {
 
     private final ProductRepository productRepository;
-
     public DefaultProductGateway(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
@@ -20,6 +19,17 @@ public class DefaultProductGateway implements ProductGateway {
     @Override
     public Product create(Product product) {
         product.setId(UUID.randomUUID().toString());
+
+        //TODO: Calculate Sugar
+
+        //TODO: Calculate Calories
+
+        //TODO: Calculate SaturatedFats
+
+        //TODO: Calculate TransFats
+
+        //TODO: Calculate Sodium
+
         // Call and get stickers for this.
         return toModel(productRepository.save(toEntity(product)));
     }
