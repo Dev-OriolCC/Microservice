@@ -9,13 +9,13 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Pagination<T> {
-    public static final String BASE_URL = "http://localhost:8080";
+public class MsPagination<T> {
+    public static final String BASE_URL = "http://localhost:8081/api/v1/";
     private String previousPage;
     private String nextPage;
     private List<T> body;
 
-    public Pagination(String previousPage, String nextPage, List<T> body) {
+    public MsPagination(String previousPage, String nextPage, List<T> body) {
         this.previousPage = previousPage;
         this.nextPage = nextPage;
         this.body = body;
@@ -45,8 +45,8 @@ public class Pagination<T> {
             return this;
         }
 
-        public Pagination<T> build() {
-            return new Pagination<T>(
+        public MsPagination<T> build() {
+            return new MsPagination<T>(
                     getPreviousPage(),
                     getNextPage(),
                     this.body);
@@ -59,13 +59,13 @@ public class Pagination<T> {
             return null;
         }
         private String getPreviousPage() {
-            if(pageNumber > 0 && pageNumber < totalPages - 1){
-                return buildUrl() + (pageNumber -1);
+            if(pageNumber > 0 && pageNumber <= totalPages - 1){ // temporary solution
+                return buildUrl() + (pageNumber - 1);
             }
             return null;
         }
 
-        private String buildUrl (){
+        private String buildUrl(){
             return BASE_URL + this.resource +  "?page=";
         }
     }

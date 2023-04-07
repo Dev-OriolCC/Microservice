@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Table(name = "products")
-@SQLDelete(sql = "UPDATE products SET deleted =true WHERE id = ?")
+@SQLDelete(sql = "UPDATE products SET deleted = true WHERE id = ?")
 @Where(clause = "deleted = false")
 public class ProductEntity extends BaseEntity {
     /*

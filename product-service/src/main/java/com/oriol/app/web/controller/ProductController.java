@@ -1,5 +1,6 @@
 package com.oriol.app.web.controller;
 
+import com.oriol.app.domain.MsPagination;
 import com.oriol.app.domain.products.Product;
 import com.oriol.app.domain.products.ProductService;
 import com.oriol.app.web.controller.dto.ProductDto;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/products")
 @AllArgsConstructor
@@ -21,11 +23,21 @@ public class ProductController {
         return new ResponseEntity<>(toDto(productService.create(toModel(productDto))), HttpStatus.CREATED);
     }
 
-    @GetMapping
-    public ResponseEntity<List<ProductDto>> getProducts() {
-        List<ProductDto> productDtos = productService.getProducts().stream().map(this::toDto).toList();
-        return new ResponseEntity<>(productDtos, HttpStatus.OK);
+//    @GetMapping
+//    public ResponseEntity<List<ProductDto>> getProducts() {
+//        List<ProductDto> productDtos = productService.getProducts().stream().map(this::toDto).toList();
+//        return new ResponseEntity<>(productDtos, HttpStatus.OK);
+//    }
+
+    @GetMapping()
+    public ResponseEntity<MsPagination<Product>> getProductsPaginated(@RequestParam Integer page) {
+        System.out.println(page);
+        MsPagination<Product> productDtoPagination = productService.getProducts(page);
+        System.out.println(productDtoPagination.getBody());
+        return ResponseEntity.ok(productDtoPagination);
     }
+
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id) {
         productService.delete(id);
